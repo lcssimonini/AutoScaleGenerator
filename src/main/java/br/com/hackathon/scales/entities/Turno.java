@@ -1,19 +1,27 @@
 package br.com.hackathon.scales.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import br.com.hackathon.scales.entities.suport.ErrorSerializer;
+
 @Entity
-public class Turno {
+public class Turno extends ErrorSerializer  {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,11 +33,20 @@ public class Turno {
 	
 	@NotNull(message = "O horário de início deve ser informado")
 	@Temporal(value=TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date horarioInicio;
 	
 	@NotNull(message = "O horário de fim deve ser informado")
 	@Temporal(value=TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date horarioFim;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Funcionario> funcionarios;
+	
+	private Integer qtdFuncionarios;
+	
+	private boolean reduzido;
 
 	public Turno() {
 		
@@ -65,6 +82,22 @@ public class Turno {
 
 	public void setHorarioFim(Date horarioFim) {
 		this.horarioFim = horarioFim;
+	}
+	
+	public boolean isReduzido() {
+		return reduzido;
+	}
+
+	public void setReduzido(boolean reduzido) {
+		this.reduzido = reduzido;
+	}
+	
+	public Integer getQtdFuncionarios() {
+		return qtdFuncionarios;
+	}
+
+	public void setQtdFuncionarios(Integer qtdFuncionarios) {
+		this.qtdFuncionarios = qtdFuncionarios;
 	}
 
 	@Override

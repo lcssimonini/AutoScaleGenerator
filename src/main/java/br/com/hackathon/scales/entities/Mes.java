@@ -4,17 +4,17 @@ import java.util.Calendar;
 
 public enum Mes {
 	JANEIRO("Janeiro", 0),
-	FEVEREIRO("Fevereiro", 0),
-	MARCO("Março", 0),
-	ABRIL("Abril", 0),
-	MAIO("Maio", 0),
-	JUNHO("Junho", 0),
-	JULHO("Julho", 0),
-	AGOSTO("Agosto", 0),
-	SETEMBO("Setembro", 0),
-	OUTUBRO("Outubro", 0),
-	NOVEMBRO("Novemro", 0),
-	DEZEMBRO("Dezembro", 0);
+	FEVEREIRO("Fevereiro", 1),
+	MARCO("Março", 2),
+	ABRIL("Abril", 3),
+	MAIO("Maio", 4),
+	JUNHO("Junho", 5),
+	JULHO("Julho", 6),
+	AGOSTO("Agosto", 7),
+	SETEMBO("Setembro", 8),
+	OUTUBRO("Outubro", 9),
+	NOVEMBRO("Novemro", 10),
+	DEZEMBRO("Dezembro", 11);
 	
 	private String descricao;
 	private Calendar calendar;

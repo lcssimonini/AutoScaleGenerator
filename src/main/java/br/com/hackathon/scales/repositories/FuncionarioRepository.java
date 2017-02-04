@@ -1,5 +1,12 @@
 package br.com.hackathon.scales.repositories;
 
-public class FuncionarioRepository {
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.hackathon.scales.entities.Funcionario;
+
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+	
+	List<Funcionario> findByNomeContaining(String nome);
 }

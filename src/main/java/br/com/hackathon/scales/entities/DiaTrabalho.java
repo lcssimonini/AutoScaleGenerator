@@ -1,5 +1,7 @@
 package br.com.hackathon.scales.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,24 +18,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 import br.com.hackathon.scales.entities.suport.ErrorSerializer;
 
 @Entity
-public class Funcionario extends ErrorSerializer {
+public class DiaTrabalho extends ErrorSerializer {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@NotEmpty(message = "Nome não pode ser vazio")
-	private String nome;
-	
-	@NotEmpty(message = "Cargo não pode ser vazio")
+	@NotEmpty(message = "Dia da semana não pode ser vazio")
 	@Enumerated(EnumType.STRING)
-	private Cargo cargo;
+	private DiaSemana diaSemana;
 	
 	@NotNull(message = "O turno deve ser informado")
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Turno turno;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Turno> turnos;
 	
-	public Funcionario() {
+	private boolean reduzido;
+	
+	public DiaTrabalho(){
 		
 	}
 
@@ -45,36 +46,36 @@ public class Funcionario extends ErrorSerializer {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public DiaSemana getDiaSemana() {
+		return diaSemana;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDiaSemana(DiaSemana diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 
-	public Cargo getCargo() {
-		return cargo;
+	public List<Turno> getTurnos() {
+		return turnos;
 	}
 
-	public void setCargo(Cargo status) {
-		this.cargo = status;
-	}
-	
-	public Turno getTurno() {
-		return turno;
+	public void setTurnos(List<Turno> turnos) {
+		this.turnos = turnos;
 	}
 
-	public void setTurno(Turno turno) {
-		this.turno = turno;
+	public boolean isReduzido() {
+		return reduzido;
+	}
+
+	public void setReduzido(boolean reduzido) {
+		this.reduzido = reduzido;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cargo == null) ? 0 : cargo.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((diaSemana == null) ? 0 : diaSemana.hashCode());
+		result = prime * result + (reduzido ? 1231 : 1237);
 		return result;
 	}
 
@@ -86,19 +87,16 @@ public class Funcionario extends ErrorSerializer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionario other = (Funcionario) obj;
-		if (cargo != other.cargo)
+		DiaTrabalho other = (DiaTrabalho) obj;
+		if (diaSemana != other.diaSemana)
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
+		if (reduzido != other.reduzido)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", cargo=" + cargo + "]";
+		return "DiaTrabalho [diaSemana=" + diaSemana + ", reduzido=" + reduzido + "]";
 	}
 }
