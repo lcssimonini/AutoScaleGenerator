@@ -39,7 +39,7 @@ public class FuncionarioController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Funcionario> getAllPoints() {
+	public List<Funcionario> findAll() {
 		List<Funcionario> todosFuncionarios = service.findAll();
 		
 		return todosFuncionarios;

@@ -38,6 +38,10 @@ public class TurnoService {
 		return todosFuncionarios;
 	}
 	
+	public Turno findOne(Long id) {
+		return repository.findOne(id);
+	}
+	
 	public void delete(Long id) {
 		repository.delete(id);
 	}

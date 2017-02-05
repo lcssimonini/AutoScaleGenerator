@@ -45,6 +45,14 @@ public class TurnoController {
 		return todosTurnos;
 	}
 	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public ResponseEntity<Turno> findOne(@PathVariable Long id) {
+		Turno found = service.findOne(id);
+		
+		ResponseEntity<Turno> responseEntity = new ResponseEntity<Turno>(found, HttpStatus.OK);
+		return responseEntity;
+	}
+	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		service.delete(id);		

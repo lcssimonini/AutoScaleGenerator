@@ -39,10 +39,18 @@ public class DiaTrabalhoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<DiaTrabalho> getAllPoints() {
+	public List<DiaTrabalho> findAll() {
 		List<DiaTrabalho> todosDiaTrabalho = service.findAll();
 
 		return todosDiaTrabalho;
+	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public ResponseEntity<DiaTrabalho> findOne(@PathVariable Long id) {
+		DiaTrabalho found = service.findOne(id);
+		
+		ResponseEntity<DiaTrabalho> responseEntity = new ResponseEntity<DiaTrabalho>(found, HttpStatus.OK);
+		return responseEntity;
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
