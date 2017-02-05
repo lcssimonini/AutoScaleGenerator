@@ -14,7 +14,7 @@ import br.com.hackathon.scales.repositories.FuncionarioRepository;
 public class FuncionarioService {
 	
 	@Autowired
-	private FuncionarioRepository funcionariosRepository;
+	private FuncionarioRepository repository;
 	
 	public Funcionario save(Funcionario funcionario, Errors errors) {
 		
@@ -29,16 +29,16 @@ public class FuncionarioService {
 			return funcionario;
 		}
 
-		return funcionariosRepository.save(funcionario);
+		return repository.save(funcionario);
 	}
 	
 	public List<Funcionario> findAll() {
-		List<Funcionario> todosFuncionarios = funcionariosRepository.findAll();
+		List<Funcionario> todosFuncionarios = repository.findAll();
 		
 		return todosFuncionarios;
 	}
 	
 	public void delete(Long id) {
-		funcionariosRepository.delete(id);
+		repository.delete(id);
 	}
 }

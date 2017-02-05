@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.hackathon.scales.entities.Funcionario;
-import br.com.hackathon.scales.services.FuncionarioService;
+import br.com.hackathon.scales.entities.Turno;
+import br.com.hackathon.scales.services.TurnoService;
 
 @RestController
-@RequestMapping("/funcionarios")
-public class FuncionarioController {
+@RequestMapping("/turnos")
+public class TurnoController {
 	
 	@Autowired
-	private FuncionarioService service;
+	private TurnoService service;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Funcionario> save(@Validated Funcionario funcionario, Errors errors) {
-		Funcionario saved = service.save(funcionario, errors);
+	public ResponseEntity<Turno> save(@Validated Turno turno, Errors errors) {
+		Turno saved = service.save(turno, errors);
 		
 		HttpStatus status = null;
 		
@@ -34,15 +34,15 @@ public class FuncionarioController {
 			status = HttpStatus.CREATED;
 		}
 		
-		ResponseEntity<Funcionario> responseEntity = new ResponseEntity<Funcionario>(saved, status);
+		ResponseEntity<Turno> responseEntity = new ResponseEntity<Turno>(saved, status);
 		return responseEntity;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Funcionario> getAllPoints() {
-		List<Funcionario> todosFuncionarios = service.findAll();
+	public List<Turno> getAllPoints() {
+		List<Turno> todosTurnos = service.findAll();
 		
-		return todosFuncionarios;
+		return todosTurnos;
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
