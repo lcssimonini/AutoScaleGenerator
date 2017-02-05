@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 
-import br.com.hackathon.scales.entities.Funcionario;
-import br.com.hackathon.scales.repositories.FuncionarioRepository;
+import br.com.hackathon.scales.entities.SystemParameter;
+import br.com.hackathon.scales.repositories.SystemParameterRepository;
 
 @Service
-public class FuncionarioService {
+public class SystemParameterService {
 	
 	@Autowired
-	private FuncionarioRepository repository;
+	private SystemParameterRepository repository;
 	
-	public Funcionario save(Funcionario funcionario, Errors errors) {
-
+	public SystemParameter save(SystemParameter funcionario, Errors errors) {
+		
 		if (funcionario == null) {
-			throw new IllegalArgumentException("Não foi passado um funcionario para ser salvo");
+			throw new IllegalArgumentException("Não foi passado um parâmetro de sistema para ser salvo");
 		}
 
 		if (errors.hasErrors()) {
@@ -31,13 +31,13 @@ public class FuncionarioService {
 
 		return repository.save(funcionario);
 	}
-
-	public List<Funcionario> findAll() {
-		List<Funcionario> todosFuncionarios = repository.findAll();
-
+	
+	public List<SystemParameter> findAll() {
+		List<SystemParameter> todosFuncionarios = repository.findAll();
+		
 		return todosFuncionarios;
 	}
-
+	
 	public void delete(Long id) {
 		repository.delete(id);
 	}

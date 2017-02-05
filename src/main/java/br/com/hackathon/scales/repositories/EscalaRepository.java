@@ -1,5 +1,9 @@
 package br.com.hackathon.scales.repositories;
 
-public class EscalaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.hackathon.scales.entities.Escala;
+
+public interface EscalaRepository extends JpaRepository<Escala, Long>  {
 
 }

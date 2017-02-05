@@ -7,35 +7,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 
-import br.com.hackathon.scales.entities.Funcionario;
-import br.com.hackathon.scales.repositories.FuncionarioRepository;
+import br.com.hackathon.scales.entities.DiaTrabalho;
+import br.com.hackathon.scales.repositories.DiaTrabalhoRepository;
 
 @Service
-public class FuncionarioService {
-	
-	@Autowired
-	private FuncionarioRepository repository;
-	
-	public Funcionario save(Funcionario funcionario, Errors errors) {
+public class DiaTrabalhoService {
 
-		if (funcionario == null) {
+	@Autowired
+	private DiaTrabalhoRepository repository;
+
+	public DiaTrabalho save(DiaTrabalho diaTrabalho, Errors errors) {
+
+		if (diaTrabalho == null) {
 			throw new IllegalArgumentException("Não foi passado um funcionario para ser salvo");
 		}
 
 		if (errors.hasErrors()) {
 			for (ObjectError error : errors.getAllErrors()) {
-				funcionario.addErrorMessage(error.getDefaultMessage());
+				diaTrabalho.addErrorMessage(error.getDefaultMessage());
 			}
-			return funcionario;
+			return diaTrabalho;
 		}
 
-		return repository.save(funcionario);
+		return repository.save(diaTrabalho);
 	}
 
-	public List<Funcionario> findAll() {
-		List<Funcionario> todosFuncionarios = repository.findAll();
+	public List<DiaTrabalho> findAll() {
+		List<DiaTrabalho> todosDiaTrabalho = repository.findAll();
 
-		return todosFuncionarios;
+		return todosDiaTrabalho;
 	}
 
 	public void delete(Long id) {

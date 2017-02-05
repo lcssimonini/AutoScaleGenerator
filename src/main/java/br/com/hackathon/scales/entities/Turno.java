@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.hackathon.scales.entities.suport.ErrorSerializer;
+import br.com.hackathon.scales.enums.NumeroTurno;
 
 @Entity
 public class Turno extends ErrorSerializer  {

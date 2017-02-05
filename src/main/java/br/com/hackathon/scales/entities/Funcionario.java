@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.hackathon.scales.entities.suport.ErrorSerializer;
+import br.com.hackathon.scales.enums.Cargo;
 
 @Entity
 public class Funcionario extends ErrorSerializer {
@@ -25,11 +26,18 @@ public class Funcionario extends ErrorSerializer {
 	@NotEmpty(message = "Nome não pode ser vazio")
 	private String nome;
 	
+	@NotEmpty(message = "Matricula não pode ser vazia")
+	private String matricula;
+	
+	private String email;
+	
+	private String telefone;
+	
 	@NotNull(message = "Cargo não pode ser vazio")
 	@Enumerated(EnumType.STRING)
 	private Cargo cargo;
 	
-//	@NotNull(message = "O turno deve ser informado")
+	@NotNull(message = "O turno deve ser informado")
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Turno turno;
 	
@@ -67,6 +75,30 @@ public class Funcionario extends ErrorSerializer {
 
 	public void setTurno(Turno turno) {
 		this.turno = turno;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package br.com.hackathon.scales.entities;
+package br.com.hackathon.scales.enums;
 
 public enum NumeroTurno {
 	

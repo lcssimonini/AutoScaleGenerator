@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.hackathon.scales.entities.suport.ErrorSerializer;
+import br.com.hackathon.scales.enums.DiaSemana;
 
 @Entity
 public class DiaTrabalho extends ErrorSerializer {
