@@ -21,6 +21,15 @@ public class FuncionarioService {
 		if (funcionario == null) {
 			throw new IllegalArgumentException("Não foi passado um funcionario para ser salvo");
 		}
+		
+		Funcionario funcionarioBase = null;
+		
+		if (funcionario.getId() != null && funcionario.getTurno() != null) {
+			funcionarioBase = repository.getOne(funcionario.getId());
+			
+			funcionarioBase.setTurno(funcionario.getTurno());
+			return repository.save(funcionarioBase);
+		}
 
 		if (errors.hasErrors()) {
 			for (ObjectError error : errors.getAllErrors()) {
