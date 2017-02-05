@@ -37,7 +37,7 @@ public class Funcionario extends ErrorSerializer {
 	@Enumerated(EnumType.STRING)
 	private Cargo cargo;
 	
-	@NotNull(message = "O turno deve ser informado")
+//	@NotNull(message = "O turno deve ser informado")
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Turno turno;
 	

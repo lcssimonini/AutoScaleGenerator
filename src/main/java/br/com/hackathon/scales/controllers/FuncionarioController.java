@@ -45,6 +45,14 @@ public class FuncionarioController {
 		return todosFuncionarios;
 	}
 	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public ResponseEntity<Funcionario> findOne(@PathVariable Long id) {
+		Funcionario found = service.findOne(id);
+		
+		ResponseEntity<Funcionario> responseEntity = new ResponseEntity<Funcionario>(found, HttpStatus.OK);
+		return responseEntity;
+	}
+	
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		service.delete(id);		

@@ -31,6 +31,10 @@ public class FuncionarioService {
 
 		return repository.save(funcionario);
 	}
+	
+	public Funcionario findOne(Long id) {
+		return repository.findOne(id);
+	}
 
 	public List<Funcionario> findAll() {
 		List<Funcionario> todosFuncionarios = repository.findAll();
